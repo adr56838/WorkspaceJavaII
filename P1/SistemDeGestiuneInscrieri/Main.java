@@ -3,182 +3,112 @@ package devmindJava.P1.SistemDeGestiuneInscrieri;
 import java.util.Scanner;
 
 public class Main {
-
-    public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    public static void printMenu() {
+        System.out.println("\nadd          - Adauga o noua persoana(inscriere)" +
+                "\ncheck        - Verifica daca o persoana este inscrisa la eveniment" +
+                "\nremove       - Sterge o persoana existenta din lista" +
+                "\nupdate       - Actualizeaza detaliile unei persoane" +
+                "\nguests       - Lista de persoane care participa la eveniment" +
+                "\nwaitlist     - Persoanele din lista de asteptare" +
+                "\navailable    - Numarul de locuri libere" +
+                "\nguests_no    - Numarul de persoane care participa la eveniment" +
+                "\nwaitlist_no  - Numarul de persoane din lista de asteptare" +
+                "\nsubscribe_no - Numarul total de persoane inscrise" +
+                "\nsearch       - Cauta toti invitatii conform sirului de caractere introdus" +
+                "\nquit         - Inchide aplicatia");
+    }
+    public static void main (String[] args){
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Bun venit! Tastati \" help \" pentru a Afisa lista de comenzi: " );
-        String menu = sc.nextLine();
-       // Guest.printMenu();
+        System.out.println("Bun venit! Tastati \" help \" pentru a Afisa lista de comenzi: ");
+        String comanda = sc.nextLine();
 
-        public String listaComenzi(Guest invitat){
-            String comanda = "";
+        do{
+            if(comanda.equals("help")) {
+                printMenu();
+            } else {
+                System.out.println("Nu ati tastat corect \"help\"!");
+                System.out.println("Introduceti din nou comanda \"help\"");
+                comanda = sc.nextLine();
+                printMenu();
+            }
+        }while(comanda.equals("help"));
+
+
+        do {
+
+            comanda = sc.nextLine();
             comanda = comanda.toLowerCase();
 
-            do {
-                if (comanda.equals("quit")) {
-                    System.out.println("Aplicatia se inchide...");
-                }
-                Scanner sc = null;
-                int cautare = 0;
-                int actualizare = 0;
-                String searchPartial = "";
-                searchPartial = searchPartial.toLowerCase();
-
-
-
-                if(comanda.equals("help")){
-                    Guest.printMenu();
-                }
-                //ADD
-                else if (comanda.equals("add")) {
-                    System.out.println("Se adauga o persoana...");
-                    sc = new Scanner(System.in);
-                    System.out.print("Adauga nume: ");
-                    lastName = sc.nextLine();
-                    System.out.print("Adauga prenume: ");
-                    firstName = sc.nextLine();
-                    System.out.print("Adauga email(format \"denumireemail@gmail.com\": ");
-                    email = sc.nextLine();
-                    System.out.print("Adauga numar de telefon (format\"+40745111999\"): ");
-                    telephoneNumber = sc.nextLine();
-
-                    Guest guest = new Guest(lastName, firstName, email, telephoneNumber);
+            switch (comanda) {
+                case "add":
+                    GuestList.addPerson();//cum fac aceasta delegare pentru a apela metoda din GuestList?
 
                     //help
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                    // deleaga metoda de adaugare persoana 1.
 
-                    //CHECK
-                } else if (comanda.equals("check")) {
-                    System.out.println("Alege modul de autentificare, tastand: " +
-                            "\n\t\"1\" - lastName si firstName" +
-                            "\n\t\"2\" - email" +
-                            "\n\t\"3\" - telephoneNumber");
-                    cautare = sc.nextInt();
-                    if(cautare == 1){
-                        System.out.println("Introdu lastName si firstName(ex: Popescu Ion):");
-                        check(name); // se va face verificarea dupa NUME conform metodei din guestList
-                    } else if(cautare == 2){
-                        System.out.println("Introdu adresa de email(ex: adrian@gmail.com:");
-                        check(email);// se va face verificarea dupa EMAIL conform metodei din guestList
-                    }else if (cautare == 3){
-                        System.out.println("Introdu numarul de telefon (ex: 0745111999):");
-                        check(telephoneNumber)//// se va face verificarea dupa TELEFON conform metodei din guestList
-                    } else {
-                        System.out.println("Ai introdus un numar gresit! ");
-                        Guest.printMenu();
-                        System.out.println("-->Introdu din nou comanda \"check\" pentru a relua procesul de verificare: ");
-
-                    }
+                case "check":
+                    //GuestList.check;
                     //help
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
 
-                //REMMOVE
-                if(comanda.equals("remove")){
-                    comanda.equals("check"); //apeleaza meniul check
+                case "remove":
+
 
                     //help
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
 
-                //UPDATE
-                if(comanda.equals("update")){
-                    comanda.equals("check");
-                    System.out.println("Alege campul de actualizat, tastand: " +
-                            "\n\t\"1\" - Nume" +
-                            "\n\t\"2\" - Prenume" +
-                            "\n\t\"3\" - Email" +
-                            "\n\t\"4\" - Numar de telefon(format \"+40733386462\"");
-                    actualizare = sc.nextInt();
-                    if(actualizare == 1){
-                        System.out.println("Introduceti numele de familie:");
-                    } else if (actualizare == 2){
-                        System.out.println("Introduceti prenumele:");
-                    } else if (actualizare == 3){
-                        System.out.println("Introduceti email:");
-                    } else if (actualizare == 4){
-                        System.out.println("Introduceti numarul de telefon:");
-                    } else {
-                        System.out.println("Eroare: Ati introdus un numar gresit");
-                        comanda.equals("update");
-                    }
+                case "update":
+
                     //help
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
 
-                //GUESTS
-                if(comanda.equals("guests")){
+                case "guests":
                     System.out.println(GuestList.guests);
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
 
-                //WAITLIST
-                if(comanda.equals("waitlist")){
+                case "waitlist":
                     System.out.println(GuestList.waitlist);
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
 
-                //AVAILABLE
-                if(comanda.equals("available")){
+                case "available":
                     System.out.println(GuestList.available);
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
 
-                //GUEST_NO
-                if(comanda.equals("guests_no")){
+                case "guests_no":
                     System.out.println(GuestList.guests_no);
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
 
-                //WAITLIST_NO
-                if(comanda.equals("waitlist_no")){
+                case "waitlist_no":
                     System.out.println(GuestList.waitlist_no);
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
+                case "subscribe_no":
 
-                //SUBSCRIBE_NO
-                if(comanda.equals("subscribe_no")){
                     System.out.println(GuestList.subscribe_no);
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
+                case "search":
 
-                //SEARCH
-                if(comanda.equals("search")){
-                    System.out.println("Introdu minim 3 litere sau cifre pentru o cautare valida: ");
-                    searchPartial = sc.nextLine();
-                    // searchPartial = searchPartial.toLowerCase();
-
-                    if(GuestList.search){
-                        System.out.println(GuestList.search);
-                    }else{
-                        System.out.println(!GuestList.search);
-                        System.out.println("Nu exista nimeni cu aceste criterii \"" + searchPartial + "\" !");
-                    }
                     System.out.println("Asteapta comanda: (help - Afiseaza lista de comenzi)");
                     comanda = sc.nextLine();
-                }
+                case "quit":
+                    System.out.println("Aplicatia se inchide...");
 
-
-            }while(!comanda.equals("quit"));
-            return comanda;
-        }
-
-
-
-
-
-
+                default:
+                    System.out.println("Ai introdus o comanda gresita");
+                    printMenu();
+            }
+        } while (!comanda.equals("quit"));
     }
 }
+
