@@ -1,0 +1,5 @@
+1. cel mai scurt cuvant ana
+2. cel mai lung cuvant: frate
+3. primul cuvant in ordine alfabetica: ana
+4. ultimul cuvant in ordine alfabetica: tata
+5. numarul total de cuvinte: 4
